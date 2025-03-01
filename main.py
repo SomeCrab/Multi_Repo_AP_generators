@@ -1,11 +1,15 @@
-def rng_generator(number):
-    return_num = 1
-    if number == 'inf':
-        return_num = 0
-        while True:
-            yield return_num
-            return_num += 1
-    else:
-        while return_num != number + 1:
-            yield return_num
-            return_num += 1
+from typing import Iterator, Union
+
+def rng_generator(end: Union[int, None] = None) -> Iterator[int]:
+    """
+    Number generator.
+
+    :param end: Iteration limit. If None, genaretes infinite sequence of integers starting from 1.
+    :return: iterator object that yields integer numbers.
+    """
+    num = 1
+    while True:
+        yield num
+        num += 1
+        if end is not None and num > end:
+            break
